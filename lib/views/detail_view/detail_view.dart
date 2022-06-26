@@ -177,15 +177,17 @@ class _MovieGenresWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<DetailViewModel, MovieDetailData>(
+    return Selector<DetailViewModel, MovieDetailData?>(
       selector: (_, model) => model.data,
       builder: (context, value, _) {
-        return Wrap(
+        return Visibility(
+            visible: value != null,
+            child: Wrap(
           direction: Axis.horizontal,
           runAlignment: WrapAlignment.start,
           crossAxisAlignment: WrapCrossAlignment.start,
           alignment: WrapAlignment.start,
-          children: value.genres
+              children: value!.genres
               .map((genre) => BoxContainer(
                     child: Text(
                       genre.name,
@@ -193,7 +195,7 @@ class _MovieGenresWidget extends StatelessWidget {
                     ),
                   ))
               .toList(),
-        );
+            ));
       },
     );
   }
@@ -204,15 +206,17 @@ class _MovieProductionCompaines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<DetailViewModel, MovieDetailData>(
+    return Selector<DetailViewModel, MovieDetailData?>(
       selector: (_, model) => model.data,
       builder: (context, value, _) {
-        return Wrap(
+        return Visibility(
+            visible: value != null,
+            child: Wrap(
           direction: Axis.horizontal,
           runAlignment: WrapAlignment.start,
           crossAxisAlignment: WrapCrossAlignment.start,
           alignment: WrapAlignment.start,
-          children: value.productionCompanies
+              children: value!.productionCompanies
               .map(
                 (companie) => Visibility(
                   visible: companie.logoPath != null,
@@ -226,7 +230,7 @@ class _MovieProductionCompaines extends StatelessWidget {
                 ),
               )
               .toList(),
-        );
+            ));
       },
     );
   }

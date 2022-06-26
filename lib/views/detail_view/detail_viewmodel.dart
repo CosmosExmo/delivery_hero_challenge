@@ -7,8 +7,8 @@ class DetailViewModel extends BaseViewModel {
 
   DetailViewModel(this.movie);
 
-  late MovieDetailData _data;
-  MovieDetailData get data => _data;
+  MovieDetailData? _data;
+  MovieDetailData? get data => _data;
 
   @override
   void disposeModel() {}
