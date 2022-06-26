@@ -11,6 +11,7 @@ class DeliveryHeroChallenge extends StatelessWidget {
     return MaterialApp(
       title: 'Delivery Hero Challenge',
       theme: lightTheme,
+      debugShowCheckedModeBanner: false,
       home: const HomeView(),
     );
   }
