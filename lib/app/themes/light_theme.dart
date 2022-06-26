@@ -16,11 +16,15 @@ final lightTheme = ThemeData(
   fontFamily: GoogleFonts.ubuntu().fontFamily,
   textTheme: const TextTheme(
     bodyText1: TextStyle(
-      color: Color.fromARGB(232, 229, 229, 229),
+      color: Color.fromARGB(232, 26, 25, 73), fontSize: 18
     ),
     bodyText2: TextStyle(
       color: Color.fromARGB(232, 229, 229, 229),
       fontSize: 24,
+    ),
+    headline6: TextStyle(
+      color: Color.fromARGB(255, 67, 96, 192),
+      fontSize: 20,
     ),
     subtitle1: TextStyle(
       color: Color.fromARGB(232, 26, 25, 73),

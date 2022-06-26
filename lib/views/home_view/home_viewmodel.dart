@@ -1,5 +1,5 @@
 import 'package:delivery_hero_challenge/app/blueprints/base_viewmodel.dart';
-import 'package:delivery_hero_challenge/models/movie_model.dart';
+import 'package:delivery_hero_challenge/models/movie_list_model.dart';
 import 'package:delivery_hero_challenge/views/detail_view/detail_view.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +24,8 @@ class HomeViewModel extends BaseViewModel {
     super.setViewDidLoad(true);
   }
 
-  List<MovieModel> _items = [];
-  List<MovieModel> get items => _items.toList();
+  List<MovieItemData> _items = [];
+  List<MovieItemData> get items => _items.toList();
 
   int _page = 1;
   bool _lastPage = false;
@@ -67,7 +67,7 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  void onMovieClicked(BuildContext context, MovieModel movie) {
+  void onMovieClicked(BuildContext context, MovieItemData movie) {
     Navigator.push(
       context,
       MaterialPageRoute(

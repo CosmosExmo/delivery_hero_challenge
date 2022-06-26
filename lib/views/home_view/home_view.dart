@@ -1,6 +1,6 @@
 import 'package:delivery_hero_challenge/app/app_defaults.dart';
 import 'package:delivery_hero_challenge/app/blueprints/base_page_view.dart';
-import 'package:delivery_hero_challenge/models/movie_model.dart';
+import 'package:delivery_hero_challenge/models/movie_list_model.dart';
 import 'package:delivery_hero_challenge/utils/extensions.dart';
 import 'package:delivery_hero_challenge/views/home_view/home_viewmodel.dart';
 import 'package:delivery_hero_challenge/widgets/box_container.dart';
@@ -57,7 +57,7 @@ class _MoviesGridViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<HomeViewModel, List<MovieModel>>(
+    return Selector<HomeViewModel, List<MovieItemData>>(
       selector: (_, model) => model.items,
       builder: (context, value, _) {
         if (value.isEmpty) {
@@ -89,7 +89,7 @@ class _MoviesGridViewWidget extends StatelessWidget {
 }
 
 class _MovieItemWidget extends StatelessWidget {
-  final MovieModel item;
+  final MovieItemData item;
   const _MovieItemWidget({Key? key, required this.item}) : super(key: key);
 
   @override

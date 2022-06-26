@@ -10,8 +10,10 @@ class AppDefaults {
   static const kStandartContentPaddingLow = 5.0;
   static const kStandartBlurRadius = 5.0;
   static const kStandartSpreadRadius = 2.0;
-  static const kStandartOpacity = 0.2;
+  static const kStandartOpacity = 0.8;
   static const kStandartDetailViewTopPadding = 80.0;
   static const kStandartLongDuration = Duration(milliseconds: 700);
   static const kStandartCrossAxisCount = 3;
+  static const kStandartPosterImageWith = 200.0;
+  static const kStandartPosterImageHeight = 300.0;
 }

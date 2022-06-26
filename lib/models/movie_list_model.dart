@@ -1,13 +1,13 @@
 import 'package:delivery_hero_challenge/app/blueprints/api_response.dart';
-import 'package:delivery_hero_challenge/models/movie_model.dart';
+import 'package:flutter/foundation.dart';
 
 class MovieListModel extends ApiResponse {
-  late List<MovieModel> data;
+  late List<MovieItemData> data;
 
   MovieListModel.fromMap(Map<String, dynamic> map) : super.fromMap(map) {
-    final List<MovieModel> data = map['results'] != null
-        ? List<MovieModel>.from(map['results']
-            ?.map((x) => MovieModel.fromMap(x as Map<String, dynamic>)))
+    final List<MovieItemData> data = map['results'] != null
+        ? List<MovieItemData>.from(map['results']
+            ?.map((x) => MovieItemData.fromMap(x as Map<String, dynamic>)))
         : [];
     this.data = data;
   }
@@ -17,5 +17,133 @@ class MovieListModel extends ApiResponse {
   @override
   Map<String, dynamic> toMap() {
     return {};
+  }
+}
+
+
+@immutable
+class MovieItemData {
+  final int id;
+  final bool adult;
+  final List<int> genreIds;
+  final String originalLanguage;
+  final String originalTitle;
+  final String overview;
+  final double popularity;
+  final DateTime? releaseDate;
+  final String title;
+  final bool video;
+  final double voteAverage;
+  final int voteCount;
+  final String? backdropPath;
+  final String? posterPath;
+
+  const MovieItemData({
+    required this.id,
+    required this.adult,
+    required this.genreIds,
+    required this.originalLanguage,
+    required this.originalTitle,
+    required this.overview,
+    required this.popularity,
+    required this.title,
+    required this.video,
+    required this.voteAverage,
+    required this.voteCount,
+    this.releaseDate,
+    this.backdropPath,
+    this.posterPath,
+  });
+
+  factory MovieItemData.fromMap(Map<String, dynamic> map) {
+    return MovieItemData(
+      id: int.parse((map['id'] ?? "0").toString()),
+      adult: map['adult'] ?? false,
+      backdropPath: map['backdrop_path'],
+      genreIds: List<int>.from(map['genre_ids'] ?? []),
+      originalLanguage: map['original_language'] ?? '',
+      originalTitle: map['original_title'] ?? '',
+      overview: map['overview'] ?? '',
+      popularity: double.parse((map['popularity'] ?? "0.0").toString()),
+      posterPath: map['poster_path'],
+      releaseDate: DateTime.tryParse(map['release_date'].toString()),
+      title: map['title'] ?? '',
+      video: map['video'] ?? false,
+      voteAverage: double.parse((map['vote_average'] ?? "0.0").toString()),
+      voteCount: int.parse((map['vote_count'] ?? "0").toString()),
+    );
+  }
+
+  MovieItemData copyWith({
+    int? id,
+    bool? adult,
+    String? backdropPath,
+    List<int>? genreIds,
+    String? originalLanguage,
+    String? originalTitle,
+    String? overview,
+    double? popularity,
+    String? posterPath,
+    DateTime? releaseDate,
+    String? title,
+    bool? video,
+    double? voteAverage,
+    int? voteCount,
+  }) {
+    return MovieItemData(
+      id: id ?? this.id,
+      adult: adult ?? this.adult,
+      backdropPath: backdropPath ?? this.backdropPath,
+      genreIds: genreIds ?? this.genreIds,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      originalTitle: originalTitle ?? this.originalTitle,
+      overview: overview ?? this.overview,
+      popularity: popularity ?? this.popularity,
+      posterPath: posterPath ?? this.posterPath,
+      releaseDate: releaseDate ?? this.releaseDate,
+      title: title ?? this.title,
+      video: video ?? this.video,
+      voteAverage: voteAverage ?? this.voteAverage,
+      voteCount: voteCount ?? this.voteCount,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is MovieItemData &&
+        other.id == id &&
+        other.adult == adult &&
+        other.backdropPath == backdropPath &&
+        listEquals(other.genreIds, genreIds) &&
+        other.originalLanguage == originalLanguage &&
+        other.originalTitle == originalTitle &&
+        other.overview == overview &&
+        other.popularity == popularity &&
+        other.posterPath == posterPath &&
+        other.releaseDate == releaseDate &&
+        other.title == title &&
+        other.video == video &&
+        other.voteAverage == voteAverage &&
+        other.voteCount == voteCount;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        adult.hashCode ^
+        backdropPath.hashCode ^
+        genreIds.hashCode ^
+        originalLanguage.hashCode ^
+        originalTitle.hashCode ^
+        overview.hashCode ^
+        popularity.hashCode ^
+        posterPath.hashCode ^
+        releaseDate.hashCode ^
+        title.hashCode ^
+        video.hashCode ^
+        voteAverage.hashCode ^
+        voteCount.hashCode;
   }
 }
